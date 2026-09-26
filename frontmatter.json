@@ -33,7 +33,7 @@
           "title": "Media folder",
           "name": "media_subpath",
           "type": "string",
-          "default": "/img/posts/{{year}}-{{month}}-{{day}}-{{slug}}"
+          "default": "/assets/img/posts/{{year}}-{{month}}-{{day}}-{{slug}}"
         },
         {
           "title": "Is in draft",
@@ -54,7 +54,7 @@
     }
   ],
   "frontMatter.framework.id": "jekyll",
-  "frontMatter.content.publicFolder": "img",
+  "frontMatter.content.publicFolder": "assets",
   "frontMatter.preview.host": "http://localhost:4000",
   "frontMatter.content.pageFolders": [
     {
