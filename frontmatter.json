@@ -24,13 +24,20 @@
           "isPublishDate": true
         },
         {
-          "title": "Content preview",
-          "name": "preview",
-          "type": "image"
+          "title": "Preview image",
+          "name": "image",
+          "type": "image",
+          "isPreviewImage": true
+        },
+        {
+          "title": "Media folder",
+          "name": "media_subpath",
+          "type": "string",
+          "default": "/assets/img/posts/{{year}}-{{month}}-{{day}}-{{slug}}"
         },
         {
           "title": "Is in draft",
-          "name": "draft",
+          "name": "published",
           "type": "draft"
         },
         {
@@ -55,5 +62,10 @@
       "path": "[[workspace]]/_posts"
     }
   ],
-  "frontMatter.git.enabled": true
+  "frontMatter.git.enabled": true,
+  "frontMatter.content.draftField": {
+    "name": "published",
+    "type": "boolean",
+    "invert": true
+  }
 }
