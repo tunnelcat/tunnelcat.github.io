@@ -67,5 +67,14 @@
     "name": "published",
     "type": "boolean",
     "invert": true
+  },
+  "frontMatter.content.snippets": {
+    "Image": {
+      "description": "Insert image by file name (uses media_subpath)",
+      "body": "![<<alt>>](<<&filename>>)",
+      "openingTags": "<<",
+      "closingTags": ">>",
+      "isMediaSnippet": true
+    }
   }
 }
