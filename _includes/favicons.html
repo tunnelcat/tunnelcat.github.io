@@ -1,0 +1,43 @@
+<!--
+  Favicons. Overrides the theme default.
+
+  Dark/light handling needs two mechanisms because browsers disagree:
+    - Firefox honors the prefers-color-scheme media query inside an SVG
+      favicon, but ignores favicon changes made from JS.
+    - Chrome ignores the media query inside SVG favicons, but honors a JS
+      swap of the icon link.
+  So the static link is the adaptive SVG (Firefox path), and the script
+  swaps in the scheme-specific SVG (Chrome path).
+-->
+
+{% capture favicon_path %}{{ '/assets/img/favicons' | relative_url }}{% endcapture %}
+
+<!-- FIREFOX: adaptive SVG, swaps light/dark via its internal media query -->
+<link id="dyn-favicon" rel="icon" type="image/svg+xml" sizes="any" href="{{ favicon_path }}/favicon-adaptive.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ favicon_path }}/apple-touch-icon.png">
+{% if site.pwa.enabled %}
+  <link rel="manifest" href="{{ favicon_path }}/site.webmanifest">
+{% endif %}
+
+<!-- CHROME: JS swaps in the scheme-specific SVG (Chrome ignores the SVG media query) -->
+<script>
+(function () {
+  var darkIcon = "{{ favicon_path }}/favicon.svg";
+  var lightIcon = "{{ favicon_path }}/favicon-light.svg";
+  var mq = window.matchMedia("(prefers-color-scheme: dark)");
+
+  function apply(dark) {
+    var old = document.getElementById("dyn-favicon");
+    if (old) old.remove();
+    var link = document.createElement("link");
+    link.id = "dyn-favicon";
+    link.rel = "icon";
+    link.type = "image/svg+xml";
+    link.href = (dark ? darkIcon : lightIcon) + "?v=" + (dark ? "d" : "l");
+    document.head.appendChild(link);
+  }
+
+  apply(mq.matches);
+  mq.addEventListener("change", function (e) { apply(e.matches); });
+})();
+</script>
