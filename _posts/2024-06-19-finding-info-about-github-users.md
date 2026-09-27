@@ -26,12 +26,13 @@ The basic information about GitHub users can be found by using the `users/<usern
 The link for this API endpoint is below (replace the x's with a username):  
 [https://api.github.com/users/xxxxxxx](https://api.github.com/users/xxxxxxx)
 
-Interestingly, GitHub also provides an API endpoint called `users/<username>/events/public` that can be used to dump all the information about any "public events" related to a username. 
+Interestingly, GitHub also provides an API endpoint called `users/<username>/events/public` that can be used to dump all the information about any "public events" related to a username.
 
 In case you want to bookmark this for later, I included the link here (replace the x's with a username):  
 [https://api.github.com/users/xxxxxxx/events/public](https://api.github.com/users/xxxxxxx/events/public)
 
-Trying it out on my own username, I was able to get all sorts of information in JSON format, including: 
+Trying it out on my own username, I was able to get all sorts of information in JSON format, including:
+
 - Pull Requests / Pushes / Forks
 - Watched / starred repos
 - Created / deleted repos
@@ -48,12 +49,13 @@ As a nifty bonus, you can also script out code snippets to extract specific info
 ```
 
 Finally, I've heard about these two really useful tools that can be used for further investigations on GitHub users, as well as organizations/companies/etc. Check them out if you feel the need to dig a little deeper!  
+
 - [octosuite](https://github.com/bellingcat/octosuite)  
 - [gitrecon](https://github.com/GONZOsint/gitrecon)
 
 ## But I want my privacy!!
 
-Unfortunately, the sad reality is that your information is probably already out there somewhere, and you can't really do anything about it (unless scrubbing ALL your online activity is an option, but I don't cover this). If you still want to take steps to protect your email address on GitHub for a little bit of privacy, I can recommend the following: 
+Unfortunately, the sad reality is that your information is probably already out there somewhere, and you can't really do anything about it (unless scrubbing ALL your online activity is an option, but I don't cover this). If you still want to take steps to protect your email address on GitHub for a little bit of privacy, I can recommend the following:
 
 - Set your [email settings](https://github.com/settings/emails) in GitHub to keep your email address private by going to Settings > Emails (under "Access" section) > enable Keep my email addresses private. This will give you a `noreply` email, in the form of `ID+USERNAME@users.noreply.github.com`.
 
@@ -64,7 +66,8 @@ For more information, refer to the [GitHub docs](https://docs.github.com/en/acco
 - In the same settings section > enable Block command line pushes that expose my email. This will prevent any pushes from the command line that can expose your private email from a commit.
 - On your local machines (wherever you use git on the command line), set your global email to reflect your `noreply` email. Make sure your username is up-to-date with your current username too.
 
-Example: 
+Example:
+
 ```sh
 git config --global user.email "26102428+tunnelcat@users.noreply.github.com"
 git config --global user.name "tunnelcat"
@@ -72,4 +75,3 @@ git config --global user.name "tunnelcat"
 
 > This does NOT change any information or hide email addresses retroactively. Previously authored commits associated with a public email will remain public.
 {: .prompt-warning }
-
