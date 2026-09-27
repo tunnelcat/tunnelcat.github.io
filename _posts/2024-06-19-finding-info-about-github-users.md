@@ -1,5 +1,5 @@
 ---
-title: Finding Info about GitHub Users
+title: How to Find Any Github User's Email Address (and more!)
 date: 2024-06-20T04:01:23.815Z
 tags:
     - privacy
@@ -69,7 +69,7 @@ For more information, refer to the [GitHub docs](https://docs.github.com/en/acco
 Example:
 
 ```sh
-git config --global user.email "26102428+tunnelcat@users.noreply.github.com"
+git config --global user.email "12312312+tunnelcat@users.noreply.github.com"
 git config --global user.name "tunnelcat"
 ```
 
