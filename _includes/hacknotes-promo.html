@@ -1,0 +1,136 @@
+<!--
+  Sticky promo banner for the adjacent reference site ~/hacknotes.
+  Theme-aware via Chirpy CSS variables; dismissible (remembered in localStorage).
+-->
+
+<div id="hacknotes-promo" class="hn-promo" role="complementary" aria-label="hacknotes" hidden>
+  <a class="hn-promo__link" href="{{ '/hacknotes/' | absolute_url }}">
+    <span class="hn-promo__path">~/hacknotes</span>
+    <span class="hn-promo__text"><strong>New:</strong> my pentest reference &amp; cheatsheets</span>
+    <i class="fas fa-arrow-right hn-promo__arrow"></i>
+  </a>
+  <button type="button" class="hn-promo__close" aria-label="Dismiss">
+    <i class="fas fa-times"></i>
+  </button>
+</div>
+
+<style>
+  .hn-promo {
+    position: fixed;
+    left: 50%;
+    top: calc(3.1rem + env(safe-area-inset-top));
+    transform: translateX(-50%);
+    z-index: 1055;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    max-width: calc(100vw - 2rem);
+    padding: 0.4rem 0.4rem 0.4rem 0.9rem;
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--main-border-color);
+    border-radius: 0.75rem;
+    box-shadow: var(--card-shadow);
+    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+      "Liberation Mono", monospace;
+    font-size: 0.85rem;
+    animation: hn-promo-in 0.35s ease-out;
+  }
+
+  @keyframes hn-promo-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  .hn-promo__link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .hn-promo__link:hover {
+    background: var(--card-hover-bg);
+  }
+
+  .hn-promo__path {
+    color: var(--link-color);
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .hn-promo__text strong {
+    color: var(--heading-color);
+    font-weight: 700;
+  }
+
+  .hn-promo__arrow {
+    color: var(--link-color);
+    font-size: 0.8em;
+    transition: transform 0.2s ease;
+  }
+
+  .hn-promo__link:hover .hn-promo__arrow {
+    transform: translateX(3px);
+  }
+
+  .hn-promo__close {
+    flex: none;
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: 0;
+    border: none;
+    border-radius: 0.5rem;
+    background: transparent;
+    color: var(--text-muted-color);
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .hn-promo__close:hover {
+    background: var(--card-hover-bg);
+    color: var(--text-color);
+  }
+
+  @media (max-width: 576px) {
+    .hn-promo {
+      left: 1rem;
+      right: 1rem;
+      transform: none;
+      max-width: none;
+    }
+    .hn-promo__text { display: none; }
+    .hn-promo__link { flex: 1; }
+    @keyframes hn-promo-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var KEY = "hacknotes-promo-dismissed";
+    var el = document.getElementById("hacknotes-promo");
+    if (!el) return;
+    try {
+      if (localStorage.getItem(KEY)) return;
+    } catch (e) {}
+    el.hidden = false;
+    el.querySelector(".hn-promo__close").addEventListener("click", function () {
+      el.hidden = true;
+      try {
+        localStorage.setItem(KEY, "1");
+      } catch (e) {}
+    });
+  })();
+</script>
